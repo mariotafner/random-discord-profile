@@ -21,6 +21,7 @@ print("Baixando imagem")
 valor = random.randint(0, 100000)
 
 response = requests.get("https://www.thiswaifudoesnotexist.net/example-" + str(valor) + ".jpg")
+#response = requests.get("https://thispersondoesnotexist.com/image")
 if (response.status_code == 200):
     file = open("profile.png", "wb")
     file.write(response.content)
@@ -62,10 +63,24 @@ print("Abrindo configurações")
 browser.find_element(By.XPATH, "//*[@aria-label='Configurações de Usuário']").click()
 
 time.sleep(3)
+print("Aterando perfil")
+botoesEditarPerfil = browser.find_elements_by_class_name("button-38aScr")
+for botaoEditarPerfil in botoesEditarPerfil:
+    try:
+        if botaoEditarPerfil.text == 'Editar perfil':
+            botaoEditarPerfil.click()
+    except:
+        a = "ah que pena!"
+
+time.sleep(3)
 print("Anexando arquivo")
-browser.find_element(By.XPATH, 
-    "/html/body/div/div[2]/div/div[2]/div[2]/div/div[2]/div/div/main/div/div[1]/div/div/div[1]/div[1]/div/input"
-    ).send_keys(str(pathlib.Path(__file__).parent.absolute()) + "\\profile.png")
+inputs = browser.find_elements_by_class_name("fileInput-23-d-3")
+for input in inputs:
+    try:
+        if 'avatar' in input.get_attribute('aria-label'):
+            input.send_keys(str(pathlib.Path(__file__).parent.absolute()) + "\\profile.png")
+    except:
+        a = "ah que pena!"
 
 time.sleep(3)
 print("Aplicando foto")
@@ -79,7 +94,3 @@ print("Saindo")
 time.sleep(2)
 
 browser.close()
-
-
-
-
