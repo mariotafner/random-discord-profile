@@ -58,6 +58,13 @@ time.sleep(1)
 print("Login")
 inputPassword.send_keys(Keys.ENTER)
 
+try:
+    time.sleep(5)
+    print("Fechando pop-up")
+    browser.find_element(By.XPATH, "//*[@aria-label='Fechar']").click()
+except Exception as e:
+    pass
+
 time.sleep(5)
 print("Abrindo configurações")
 browser.find_element(By.XPATH, "//*[@aria-label='Configurações de Usuário']").click()
@@ -70,7 +77,7 @@ for botaoEditarPerfil in botoesEditarPerfil:
         if botaoEditarPerfil.text == 'Editar perfil':
             botaoEditarPerfil.click()
     except:
-        a = "ah que pena!"
+        pass
 
 time.sleep(3)
 print("Anexando arquivo")
@@ -80,7 +87,7 @@ for input in inputs:
         if 'avatar' in input.get_attribute('aria-label'):
             input.send_keys(str(pathlib.Path(__file__).parent.absolute()) + "\\profile.png")
     except:
-        a = "ah que pena!"
+        pass
 
 time.sleep(3)
 print("Aplicando foto")
