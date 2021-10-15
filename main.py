@@ -2,14 +2,11 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.keys import Keys
-
 import time
 import random
 import requests
 import os
-
 import json
-
 import pathlib
 
 print("iniciando")
@@ -74,17 +71,19 @@ print("Aterando perfil")
 botoesEditarPerfil = browser.find_elements_by_class_name("button-38aScr")
 for botaoEditarPerfil in botoesEditarPerfil:
     try:
-        if botaoEditarPerfil.text == 'Editar perfil':
+        if botaoEditarPerfil.text == 'Edit User Profile':
             botaoEditarPerfil.click()
     except:
         pass
 
+browser.find_element_by_class_name("fileInput-23-d-3").click()
+
 time.sleep(3)
 print("Anexando arquivo")
-inputs = browser.find_elements_by_class_name("fileInput-23-d-3")
+inputs = browser.find_elements_by_class_name("file-input")
 for input in inputs:
     try:
-        if 'avatar' in input.get_attribute('aria-label'):
+        if '.jpg,.jpeg,.png,.gif' in input.get_attribute('accept'):
             input.send_keys(str(pathlib.Path(__file__).parent.absolute()) + "\\profile.png")
     except:
         pass
