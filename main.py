@@ -71,7 +71,7 @@ print("Aterando perfil")
 botoesEditarPerfil = browser.find_elements_by_class_name("button-38aScr")
 for botaoEditarPerfil in botoesEditarPerfil:
     try:
-        if botaoEditarPerfil.text == 'Edit User Profile':
+        if botaoEditarPerfil.text == 'Editar perfil de usuário':
             botaoEditarPerfil.click()
     except:
         pass
