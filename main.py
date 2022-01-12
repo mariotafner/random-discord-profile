@@ -68,7 +68,7 @@ browser.find_element(By.XPATH, "//*[@aria-label='Configurações de Usuário']")
 
 time.sleep(3)
 print("Aterando perfil")
-botoesEditarPerfil = browser.find_elements_by_class_name("button-38aScr")
+botoesEditarPerfil = browser.find_elements_by_class_name("button-f2h6uQ")
 for botaoEditarPerfil in botoesEditarPerfil:
     try:
         if botaoEditarPerfil.text == 'Editar perfil de usuário':
@@ -76,7 +76,9 @@ for botaoEditarPerfil in botoesEditarPerfil:
     except:
         pass
 
-browser.find_element_by_class_name("fileInput-23-d-3").click()
+time.sleep(1)
+print("mudando avatar")
+browser.find_element(By.XPATH, "//*[text()='Mudar avatar']").click()
 
 time.sleep(3)
 print("Anexando arquivo")
